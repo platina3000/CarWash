@@ -39,12 +39,7 @@ private final UserService userService;
         return"product-info";
 
     }
-    @PostMapping("/create")
-    public String createProduct(Product product){
-        productService.saveProduct(product);
-        return"redirect:/";
 
-    }
 @PostMapping("product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
