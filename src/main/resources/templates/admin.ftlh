@@ -70,25 +70,28 @@
     <#list products as product>
         <tr>
             <th>${product.type}</th>
-            <th><a href="/product/${product.id}">${product.title}</a></th>
+            <th><a href="/admin/product/${product.id}">${product.title}</a></th>
             <th>${product.description}</th>
             <th>${product.price}$</th>
-            <th><form action="/product/delete/${product.id}" method="post">
+            <th><form action="/admin/product/delete/${product.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <input type="submit" value="Удалить">
                 </form>
             </th>
             <th>${product.lastDate}</th>
-            <th><form action="/product/record/${product.id}" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Добавить запись на 7 дней">
-                </form></th>
+
         </tr>
     <#else>
         <h3>УСЛУГ НЕТ</h3>
     </#list>
 </table>
 
+<hr>
+<h4>Запись открыта до: ${lastDate}</h4>
+<form action="/admin/product/record" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Добавить запись на 7 дней">
+    </form>
 <hr>
 <h3> Добавить услугу</h3>
 <form action="/admin/create" method="post">

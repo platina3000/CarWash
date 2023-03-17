@@ -6,6 +6,7 @@ import com.example.carwash.models.enums.Role;
 import com.example.carwash.repositories.ProductRepository;
 import com.example.carwash.repositories.UserRepository;
 import com.example.carwash.services.ProductService;
+import com.example.carwash.services.ScheduleService;
 import com.example.carwash.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class AdminController {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final ProductService productService;
+    private final ScheduleService scheduleService;
 
     @PostMapping("/admin/create")
     public String createProduct(Product product){
@@ -44,6 +46,7 @@ public class AdminController {
         model.addAttribute("admin",userService.getUserByPrincipal(principal));
         if(title==null) title="";
         model.addAttribute("search",title);
+        model.addAttribute("lastDate",scheduleService.dateToStr(scheduleService.getLastDate()));
         model.addAttribute("products",productService.listProduct(title));
         return "admin";
     }
@@ -67,11 +70,24 @@ public class AdminController {
 
     }
 
-    @PostMapping("/product/record/{id}")
-    public String userEdit(@PathVariable Long id){
-     productService.addRecordtoSevenDays(id);
+    @PostMapping("/admin/product/record")
+    public String userEdit(){
+     scheduleService.addRecordtoSevenDays();
         return "redirect:/admin";
 
+    }
+
+    @GetMapping("/admin/product/{id}")
+    public String productInfo(@PathVariable Long id,  Model model,Principal principal){
+        model.addAttribute("product",productService.getProductById(id));
+        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        model.addAttribute("records",scheduleService.listRecordsByProduct(id));
+        return"admin-product-info";
+    }
+    @PostMapping("/admin/product/delete/{id}")
+    public String deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+        return "redirect:/admin";
     }
 
 }

@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name="schedule")
@@ -27,5 +29,11 @@ public class Schedule {
 
 
 
+    public String getStrDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+     //   System.out.println(DateFor.format(date));
+        return date.format(formatter);
+    }
 
 }

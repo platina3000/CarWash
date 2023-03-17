@@ -1,6 +1,8 @@
 package com.example.carwash.controllers;
 
+import com.example.carwash.models.Schedule;
 import com.example.carwash.models.User;
+import com.example.carwash.services.ScheduleService;
 import com.example.carwash.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ScheduleService scheduleService;
 
     @GetMapping("/registration")
     public String registration() {
@@ -36,5 +41,13 @@ public class UserController {
         model.addAttribute("user",user);
         model.addAttribute("products",user.getScheduleList());
         return "user-info";
+    }
+
+    @PostMapping("/user/enroll/{idR}/{idP}")
+    public String enrollUser(@PathVariable("idP") Long idP,@PathVariable("idR") Long idR, Principal principal, Model model) {
+
+        scheduleService.enroll(idP,idR,userService.getUserByPrincipal(principal));
+
+        return "redirect:/";
     }
 }

@@ -18,18 +18,18 @@
         <th>Email</th>
         <th>Номер телефона</th>
     </tr>
-<#list records as record>
-    <tr>
-                <th> <form action="/user/enroll/${record.id}/${product.id}" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="submit" value="ЗАПИСАТЬСЯ"/>
-                    </form></th>
+    <#list records as record>
+        <tr>
 
-        <th>${record.getStrDate()}</th>
-    </tr>
-<#else>
-    <h3>ЗАПИСИ НЕТ</h3>
-</#list>
+                <th><#if record.user??>${record.user.phoneNumber}<#else>none</#if></th>
+
+
+
+            <th>${record.getStrDate()}</th>
+        </tr>
+    <#else>
+        <h3>ЗАПИСИ НЕТ</h3>
+    </#list>
 </table>
 
 
