@@ -46,6 +46,31 @@ public class ScheduleService {
     public boolean isAfterNow(LocalDateTime localDateTime){
        return   localDateTime.isAfter(LocalDateTime.now());
     }
+    public boolean isBeforeNow(LocalDateTime localDateTime){
+        return   localDateTime.isBefore(LocalDateTime.now());
+    }
+
+
+    public List<Schedule> listRecordsAfterNow(User user){
+       List<Schedule> userRecords =  user.getScheduleList();
+       List<Schedule> resultRecords = new ArrayList<>();
+        for (Schedule record: userRecords) {
+           if(isAfterNow(record.getDate())) resultRecords.add(record);
+        }
+
+        return resultRecords;
+
+    }
+
+
+    public List<Schedule> listRecordsBeforeNow(User user){
+        List<Schedule> userRecords =  user.getScheduleList();
+        List<Schedule> resultRecords = new ArrayList<>();
+        for (Schedule record: userRecords) {
+            if(isBeforeNow(record.getDate())) resultRecords.add(record);
+        }
+        return resultRecords;
+    }
 
     public void addRecordtoSevenDays() {
 

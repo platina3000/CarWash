@@ -11,16 +11,54 @@
 <b>EMAIL:</b>${user.email}<br>
 <b>НОМЕР ТЕЛЕФОНА:</b>${user.phoneNumber}<br>
 
+
+<h3>ВАШИ ЗАПИСИ</h3>
 <hr>
-<h4>ВАШИ ЗАПИСИ</h4>
-<#list products as product>
-    <div>
-        <p>${product.product.title}| ${product.product.price} |${product.date}
-        </p>
-    </div>
+<h4>Запланированные</h4>
+<table border="1">
+    <tr>
+        <th>НАЗВАНИЕ</th>
+        <th>ЦЕНА</th>
+        <th>ДАТА</th>
+    </tr>
+
+<#list nextRecords as record>
+    <tr>
+        <th>${record.product.title}</th>
+        <th>${record.product.price}</th>
+        <th>${record.getStrDate()}</th>
+        <th><form action="/user/record/cancel/${record.id}" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input type="submit" value="Отменить">
+            </form></th>
+    </tr>
 <#else >
-    <h3>УСЛУГ НЕТ</h3>
+    <h3>ВЫ НИКУДА НЕ ЗАПИСАНЫ</h3>
 </#list>
+
+</table><br>
+<h4>Оконченные(история)</h4>
+    <table border="1">
+        <tr>
+            <th>НАЗВАНИЕ</th>
+            <th>ЦЕНА</th>
+            <th>ДАТА</th>
+        </tr>
+
+        <#list previousRecords as record>
+        <tr>
+            <th>${record.product.title}</th>
+            <th>${record.product.price}</th>
+            <th>${record.getStrDate()}</th>
+            <th><form action="/user/product/rate/${record.id}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="submit" value="ОЦЕНИТЬ">
+                </form></th>
+        </tr>
+    <#else >
+        <h3>ИСТОРИЯ ПУСТА</h3>
+    </#list>
+</table>
 
 </body>
 </html>

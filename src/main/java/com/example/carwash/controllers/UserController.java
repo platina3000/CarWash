@@ -39,7 +39,8 @@ public class UserController {
     @GetMapping("/user/{user}")
     public String userInfo(@PathVariable("user") User user,Model model){
         model.addAttribute("user",user);
-        model.addAttribute("products",user.getScheduleList());
+        model.addAttribute("nextRecords", scheduleService.listRecordsAfterNow(user));
+        model.addAttribute("previousRecords",scheduleService.listRecordsBeforeNow(user));
         return "user-info";
     }
 
