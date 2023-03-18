@@ -19,10 +19,10 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ScheduleService {
-   private final ScheduleRepository scheduleRepository;
-   private  final ProductService productService;
-   private final ProductRepository productRepository;
-   private final UserRepository userRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final ProductService productService;
+    private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
     public List<Schedule> listRecordsByProduct(Long id) { //список записей на продукт
 
@@ -34,28 +34,29 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public List<Schedule> listFreeRecords(){
+    public List<Schedule> listFreeRecords() {
         List<Schedule> list = new ArrayList<>();
-        for (Schedule record: listRecords()) {
-            if(record.getUser()==null ) list.add(record);
+        for (Schedule record : listRecords()) {
+            if (record.getUser() == null) list.add(record);
 
         }
         return list;
     }
 
-    public boolean isAfterNow(LocalDateTime localDateTime){
-       return   localDateTime.isAfter(LocalDateTime.now());
+    public boolean isAfterNow(LocalDateTime localDateTime) {
+        return localDateTime.isAfter(LocalDateTime.now());
     }
-    public boolean isBeforeNow(LocalDateTime localDateTime){
-        return   localDateTime.isBefore(LocalDateTime.now());
+
+    public boolean isBeforeNow(LocalDateTime localDateTime) {
+        return localDateTime.isBefore(LocalDateTime.now());
     }
 
 
-    public List<Schedule> listRecordsAfterNow(User user){
-       List<Schedule> userRecords =  user.getScheduleList();
-       List<Schedule> resultRecords = new ArrayList<>();
-        for (Schedule record: userRecords) {
-           if(isAfterNow(record.getDate())) resultRecords.add(record);
+    public List<Schedule> listRecordsAfterNow(User user) {
+        List<Schedule> userRecords = user.getScheduleList();
+        List<Schedule> resultRecords = new ArrayList<>();
+        for (Schedule record : userRecords) {
+            if (isAfterNow(record.getDate())) resultRecords.add(record);
         }
 
         return resultRecords;
@@ -63,11 +64,11 @@ public class ScheduleService {
     }
 
 
-    public List<Schedule> listRecordsBeforeNow(User user){
-        List<Schedule> userRecords =  user.getScheduleList();
+    public List<Schedule> listRecordsBeforeNow(User user) {
+        List<Schedule> userRecords = user.getScheduleList();
         List<Schedule> resultRecords = new ArrayList<>();
-        for (Schedule record: userRecords) {
-            if(isBeforeNow(record.getDate())) resultRecords.add(record);
+        for (Schedule record : userRecords) {
+            if (isBeforeNow(record.getDate())) resultRecords.add(record);
         }
         return resultRecords;
     }
@@ -76,14 +77,14 @@ public class ScheduleService {
 
 
         LocalDateTime lastDate = getLastDate();
-        if(lastDate==null)
-            lastDate= LocalDateTime.now();
-        if(lastDate.isBefore(LocalDateTime.now()))
-            lastDate= LocalDateTime.now();
+        if (lastDate == null)
+            lastDate = LocalDateTime.now();
+        if (lastDate.isBefore(LocalDateTime.now()))
+            lastDate = LocalDateTime.now();
         LocalDateTime regTime = null;
 
         for (int i = 0; i < 7; i++) {
-            regTime =lastDate.plusDays(i + 1);
+            regTime = lastDate.plusDays(i + 1);
             regTime = LocalDateTime.of(regTime.getYear(), regTime.getMonth(), regTime.getDayOfMonth(), 6, 0);
             for (int j = 0; j < 20; j++) {
                 Schedule s = new Schedule();
@@ -94,16 +95,17 @@ public class ScheduleService {
         }
     }
 
-    public LocalDateTime getLastDate(){
+    public LocalDateTime getLastDate() {
         List<Schedule> l = scheduleRepository.findAll();
-        if(l.size()<1){
+        if (l.size() < 1) {
             return null;
         }
 
-        return l.get(l.size()-1).getDate();
+        return l.get(l.size() - 1).getDate();
     }
-    public String dateToStr(LocalDateTime date){
-        if(date==null) return "ЗАПИСИ НЕТ";
+
+    public String dateToStr(LocalDateTime date) {
+        if (date == null) return "ЗАПИСИ НЕТ";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return date.format(formatter);
     }
@@ -119,5 +121,19 @@ public class ScheduleService {
         userRepository.save(user);
         productRepository.save(product);
 
+    }
+
+    public void cancel(Long id) {
+        Schedule s = scheduleRepository.findById(id).orElse(null);
+        Product p = s.getProduct();
+        User u = s.getUser();
+
+        u.getScheduleList().remove(s);
+        userRepository.save(u);
+        p.getScheduleList().remove(s);
+        productRepository.save(p);
+        s.setUser(null);
+        s.setProduct(null);
+        scheduleRepository.save(s);
     }
 }

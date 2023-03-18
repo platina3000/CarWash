@@ -27,6 +27,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> listProduct(String title,boolean available) {
+        if (title != null) if (!title.equals("")) return productRepository.findAllByTitleAndAvailable(title,available);
+        return productRepository.findAllByAvailable(available);
+    }
+
     public void saveProduct(Product product) {
         log.info("SAVING NEW PRODUCT {}", product);
         productRepository.save(product);
@@ -43,8 +48,11 @@ public class ProductService {
     }
 
 
+    public void changeAvaliableStatus(Long id) {
+        Product p = getProductById(id);
+        if(p.isAvailable())p.setAvailable(false);
+        else p.setAvailable(true);
+        productRepository.save(p);
 
-
-
-
+    }
 }

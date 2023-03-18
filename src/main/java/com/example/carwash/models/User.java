@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @Column(name = "create_date")
     private LocalDateTime dateOfCreate;
 
-    @OneToMany( fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany( fetch = FetchType.EAGER)
     private List<Schedule> scheduleList = new ArrayList<>();
 
     @PrePersist
@@ -50,7 +50,10 @@ public class User implements UserDetails {
         dateOfCreate = LocalDateTime.now();
     }
 
-    public boolean isAdmin (){ return roles.contains(Role.ROLE_ADMIN);}
+    public boolean isAdmin (){ return roles.contains(Role.ROLE_ADMIN)|| roles.contains(Role.ROLE_SUPER_ADMIN);}
+    public boolean isSuperAdmin (){ return  roles.contains(Role.ROLE_SUPER_ADMIN);}
+
+
     //security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

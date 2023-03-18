@@ -28,14 +28,15 @@ public class Product {               //услуга
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "last_date")
-    private LocalDateTime lastDate;
+
+    @Column(name = "available")
+    private boolean available;
 
     @PrePersist
     private void init() {
-        lastDate = LocalDateTime.now();
+        available = false;
     }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany( fetch = FetchType.EAGER)
     private List<Schedule> scheduleList = new ArrayList<>();
 
 }

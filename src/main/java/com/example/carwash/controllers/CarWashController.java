@@ -26,7 +26,7 @@ public class CarWashController {
 
     @GetMapping("/")
     public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model) {
-        model.addAttribute("products", productService.listProduct(title));
+        model.addAttribute("products", productService.listProduct(title,true));
         if (title == null) title = "";
         model.addAttribute("search", title);
         model.addAttribute("user", userService.getUserByPrincipal(principal));

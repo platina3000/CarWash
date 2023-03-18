@@ -7,7 +7,7 @@
 <h1>АВТОМОЙКА "ПОЦЕЛУЙ-КА"</h1><hr>
 
 <#if user.email??>
-    <h3>Пользователь: <a href="/user/${user.id}">${user.name}</a></h3>
+    <h3>Пользователь: <a href="/user">${user.name}</a></h3>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Выход"/>

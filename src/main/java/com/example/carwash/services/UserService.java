@@ -55,11 +55,15 @@ public class UserService {
     }
 
     public void changeUserRoles(User user, Map<String, String> form) {
+
         Set<String> roles= Arrays.stream(Role.values())
                 .map(Role::name)//каждую роль в строку
                 .collect(Collectors.toSet());
         user.getRoles().clear();
-        for(String key : form.keySet()){
+        System.out.println(roles);
+
+        for(String key : form.values()){
+            System.out.println(key);
             if(roles.contains(key)){
                 user.getRoles().add(Role.valueOf(key));
             }

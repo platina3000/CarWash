@@ -17,14 +17,13 @@
     <tr>
         <th>Email</th>
         <th>Номер телефона</th>
+        <th>Дата</th>
+
     </tr>
     <#list records as record>
         <tr>
-
-                <th><#if record.user??>${record.user.phoneNumber}<#else>none</#if></th>
-
-
-
+            <th><#if record.user??>${record.user.email}<#else>none</#if></th>
+            <th><#if record.user??>${record.user.phoneNumber}<#else>none</#if></th>
             <th>${record.getStrDate()}</th>
         </tr>
     <#else>

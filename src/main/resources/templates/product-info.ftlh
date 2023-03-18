@@ -24,7 +24,6 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <input type="submit" value="ЗАПИСАТЬСЯ"/>
                     </form></th>
-
         <th>${record.getStrDate()}</th>
     </tr>
 <#else>

@@ -26,7 +26,7 @@
             <th><#if user.active>true<#else>false</#if></th>
             <th><#list user.roles as role>${role}</#list></th>
             <th>
-                <#if  admin.id!=user.id>
+                <#if  admin.id!=user.id && !user.isSuperAdmin()>
                     <form action="/admin/user/ban/${user.id}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <#if user.active>
@@ -40,8 +40,18 @@
                 </#if>
 
             </th>
-            <th><a href="/admin/user/edit/${user.id}">Редактировние</a></th>
-            <th><a href="/user/${user.id}">Подробная информация</a></th>
+            <th>
+                <#if admin.id!=user.id>
+                    <#if user.isSuperAdmin()==false>
+                        <a href="/admin/user/edit/${user.id}">Редактировние</a>
+                    </#if>
+                    <#else >
+                        <a href="/admin/user/edit/${user.id}">Редактировние</a>
+
+                </#if>
+
+            </th>
+            <th><a href="/admin/user/${user.id}">Подробная информация</a></th>
 
 
         </tr>
@@ -73,12 +83,19 @@
             <th><a href="/admin/product/${product.id}">${product.title}</a></th>
             <th>${product.description}</th>
             <th>${product.price}$</th>
-            <th><form action="/admin/product/delete/${product.id}" method="post">
+            <th>
+
+                <form action="/admin/product/available/${product.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Удалить">
+                    <#if product.available>
+                        <input type="submit" value="Доступна">
+                        <#else >
+                            <input type="submit" value="Недоступна">
+                    </#if>
+
                 </form>
             </th>
-            <th>${product.lastDate}</th>
+
 
         </tr>
     <#else>
