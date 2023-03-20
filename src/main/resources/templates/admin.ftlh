@@ -42,8 +42,11 @@
             </th>
             <th>
                 <#if admin.id!=user.id>
-                    <#if user.isSuperAdmin()==false>
+                    <#if  admin.isSuperAdmin()==true>
                         <a href="/admin/user/edit/${user.id}">Редактировние</a>
+                        <#else> <#if  user.isSuperAdmin()==false>
+                            <a href="/admin/user/edit/${user.id}">Редактировние</a>
+                        </#if>
                     </#if>
                     <#else >
                         <a href="/admin/user/edit/${user.id}">Редактировние</a>

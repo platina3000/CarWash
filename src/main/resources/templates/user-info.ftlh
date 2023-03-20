@@ -24,7 +24,8 @@
 
 <#list nextRecords as record>
     <tr>
-        <th>${record.product.title}</th>
+        <th><a href="/product/${record.product.id}">${record.product.title}</a>
+           </th>
         <th>${record.product.price}</th>
         <th>${record.getStrDate()}</th>
         <th><form action="/user/record/cancel/${record.id}" method="post">

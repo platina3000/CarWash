@@ -13,22 +13,27 @@
 <b>Описание:</b> ${product.description}<br>
 <b>Цена:</b> ${product.price}$<br>
 <hr>
+<#if product.available==true>
 <table border="1">
     <tr>
-        <th>Email</th>
-        <th>Номер телефона</th>
+        <th>Запись</th>
+        <th>Время</th>
     </tr>
-<#list records as record>
-    <tr>
-                <th> <form action="/user/enroll/${record.id}/${product.id}" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="submit" value="ЗАПИСАТЬСЯ"/>
-                    </form></th>
-        <th>${record.getStrDate()}</th>
-    </tr>
-<#else>
-    <h3>ЗАПИСИ НЕТ</h3>
-</#list>
+    <#list records as record>
+        <tr>
+            <th> <form action="/user/enroll/${record.id}/${product.id}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="submit" value="ЗАПИСАТЬСЯ"/>
+                </form></th>
+            <th>${record.getStrDate()}</th>
+        </tr>
+    <#else>
+        <h3>ЗАПИСИ НЕТ</h3>
+    </#list>
+    <#else>
+        <h3>ЗАПИСИ НЕТ</h3>
+</#if>
+
 </table>
 
 

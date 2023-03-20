@@ -34,7 +34,7 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public List<Schedule> listFreeRecords() {
+    public List<Schedule> listAllFreeRecords() {
         List<Schedule> list = new ArrayList<>();
         for (Schedule record : listRecords()) {
             if (record.getUser() == null) list.add(record);
@@ -42,6 +42,16 @@ public class ScheduleService {
         }
         return list;
     }
+    public List<Schedule> listFreeRecords() {
+        List<Schedule> list = new ArrayList<>();
+        for (Schedule record : listRecords()) {
+            if (record.getUser() == null && isAfterNow(record.getDate())) list.add(record);
+
+        }
+        return list;
+    }
+
+
 
     public boolean isAfterNow(LocalDateTime localDateTime) {
         return localDateTime.isAfter(LocalDateTime.now());
@@ -50,6 +60,7 @@ public class ScheduleService {
     public boolean isBeforeNow(LocalDateTime localDateTime) {
         return localDateTime.isBefore(LocalDateTime.now());
     }
+
 
 
     public List<Schedule> listRecordsAfterNow(User user) {
