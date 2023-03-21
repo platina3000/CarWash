@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
+<#import "parts/common.ftlh" as c>
 
-    <head>
-        <title>CAR WASH</title>
-    </head>
-<body>
-<h1>АВТОМОЙКА "ПОЦЕЛУЙ-КА"</h1><hr>
+<@c.page>
+
 
 <h4>РЕДАКТИРОВАНИЕ ПОЛЬЗОВАТЕЛЯ ${user.name}</h4>
 <hr>
@@ -22,5 +18,4 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Сохранить">
 </form>
-</body>
-</html>
+</@c.page>

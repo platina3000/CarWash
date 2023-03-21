@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CAR WASH</title>
-</head>
-<body>
-<h1>АВТОМОЙКА "ПОЦЕЛУЙ-КА"</h1><hr>
+<#import "parts/common.ftlh" as c>
 
+<@c.page>
 
 
 <h4>Информация об услуге</h4>
@@ -37,5 +32,4 @@
 </table>
 
 
-</body>
-</html>
+</@c.page>

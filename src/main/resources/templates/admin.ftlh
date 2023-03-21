@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CAR WASH</title>
-</head>
-<body>
-<h1>АВТОМОЙКА "ПОЦЕЛУЙ-КА"</h1><hr>
+<#import "parts/common.ftlh" as c>
+
+<@c.page>
 
 
 <h4>Панель администратора</h4>
@@ -123,5 +119,4 @@
     <input type="submit" value="Добавить услугу"/>
 </form>
 
-</body>
-</html>
+</@c.page>
