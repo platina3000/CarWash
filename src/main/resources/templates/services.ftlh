@@ -16,7 +16,7 @@
 <div class="card-group">
 <#list products as product>
     <div style="padding-right: 10px">
-    <div class="card  mb-3 shadow  bg-white rounded " style="max-width: 18rem;">
+    <div class="card  mb-3 shadow  bg-white rounded " style="max-width: 19rem;">
 
         <div class="card-body ">
             <h5 class="card-title">${product.title}</h5>
