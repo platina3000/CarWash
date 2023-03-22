@@ -46,6 +46,9 @@
     <div class="container mt-5">
         <#nested >
     </div>
+    <div class="row justify-content-center "  >
+        <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
+    </div>
 
 
 
