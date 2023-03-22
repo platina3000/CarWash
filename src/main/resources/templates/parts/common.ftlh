@@ -27,9 +27,15 @@
             body {
                 min-height: 100%;
                 background: linear-gradient(to bottom left,darkgrey,#fff);
-
-
             }
+            footer {
+                position:fixed;
+                left:0px;
+                bottom:0px;
+                height:30px;
+                width:100%;
+            }
+
 
         </style>
         <title>CAR WASH</title>
@@ -39,6 +45,9 @@
 
     <div class="container mt-5">
         <#nested >
+    </div>
+    <div class="row justify-content-center "  >
+        <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
     </div>
 
 
@@ -95,6 +104,7 @@
     </script>
     </body>
     <footer>
+
         <p class="text-right mr-4 text-muted"><small>by Andrei Tseluiko</small></p>
     </footer>
     </html>

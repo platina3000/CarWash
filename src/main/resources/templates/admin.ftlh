@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="tab-content ">
-            <div role="tabpanel1" class="tab-pane  " id="u">
+            <div role="tabpanel1 "  class="tab-pane mt-4 mb-4 " id="u">
                 <div class="container ">
                     <div class="row justify-content-center">
                         <table border="1">
@@ -65,7 +65,7 @@
                 </div>
 
             </div>
-            <div role="tabpanel1" class="tab-pane active" id="s">
+            <div role="tabpanel1" class="tab-pane active mt-4 mb-4" id="s">
                 <div class="container ">
                     <div class="row justify-content-center">
 
@@ -153,14 +153,6 @@
                                 </select>
                             </div>
 
-
-<#--                            <div class="col col-lg-2 mb-3">-->
-<#--                                <label for="validationDefaultUsername">Тип услуги</label>-->
-<#--                                <input type="number" class="form-control" id="validationDefaultUsername"-->
-<#--                                       placeholder="Тип"-->
-<#--                                       name="type" required>-->
-<#--                            </div>-->
-
                         </div>
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <button class="btn btn-primary btn-block" type="submit">Добавить услугу</button>
@@ -170,7 +162,7 @@
                 </div>
             </div>
 
-            <div role="tabpanel1" class="tab-pane " id="a">
+            <div role="tabpanel1" class="tab-pane mt-4 mb-4" id="a">
                 <div class="container ">
                     <div class="row justify-content-center">
                         <table border="1">
@@ -227,10 +219,6 @@
                 </div>
             </div>
 
-
-            <#--            <h5 class="card-title">Special title treatment</h5>-->
-            <#--            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-            <#--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
         </div>
     </div>
 

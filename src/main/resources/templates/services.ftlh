@@ -48,7 +48,7 @@
             <#list products2 as product>
                 <div class="item ">
 
-                    <div class="card shadow p-3 mb-5 bg-white rounded ">
+                    <div class="card shadow p-3 mb-3 bg-white rounded ">
                         <div class="card-body ">
                             <h5 class="card-title">${product.title}</h5>
                             <p class="card-text">${product.description}</p>
@@ -70,5 +70,7 @@
         <#else >
         <h4>Услуг пока нет...</h4>
     </#if>
+    
+
 
 </@c.page>
