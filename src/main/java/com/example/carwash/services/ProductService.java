@@ -27,6 +27,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> listProductByType(String title,boolean available,int type) {
+        if (title != null) if (!title.equals("")) return productRepository.findAllByTitleAndAvailableAndType(title,available,type);
+        return productRepository.findAllByAvailableAndType(available,type);
+    }
+
+
     public List<Product> listProduct(String title,boolean available) {
         if (title != null) if (!title.equals("")) return productRepository.findAllByTitleAndAvailable(title,available);
         return productRepository.findAllByAvailable(available);
