@@ -36,12 +36,19 @@ public class CarWashController {
     }
 
     @GetMapping("/product/{id}")
-    public String productInfo(@PathVariable Long id, Model model, Principal principal) {
+    public String productInfo(@PathVariable Long id,@RequestParam(name = "date", required = false) String date, Model model, Principal principal) {
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("user", userService.getUserByPrincipal(principal));
-        model.addAttribute("records", scheduleService.listFreeRecords());
+
+        if (date == null) date = "";
+            model.addAttribute("records", scheduleService.listFreeRecords(date));
+
+        model.addAttribute("oldDate",date);
+
         return "product-info";
     }
+
+
 
 
 }
