@@ -2,6 +2,7 @@ FROM openjdk:17.0.2-jdk-slim-buster
 WORKDIR /CarWash
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
+RUN apt-get update && apt-get install dos2unix
 RUN ./mvnw dependency:resolve
 COPY src ./src
 CMD ["./mvnw", "spring-boot:run"]
