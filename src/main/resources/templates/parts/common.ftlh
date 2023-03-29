@@ -50,14 +50,6 @@
         <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
     </div>
 
-
-
-
-    <div class="row justify-content-center "  >
-        <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
-    </div>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -111,7 +103,6 @@
     </script>
     </body>
     <footer>
-
         <p class="text-right mr-4 text-muted"><small>by Andrei Tseluiko</small></p>
     </footer>
     </html>

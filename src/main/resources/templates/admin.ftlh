@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="tab-content ">
-            <div role="tabpanel1 "  class="tab-pane mt-4 mb-4 " id="u">
+            <div role="tabpanel1 " class="tab-pane mt-4 mb-4 " id="u">
                 <div class="container ">
                     <div class="row justify-content-center">
                         <table border="1">
@@ -57,8 +57,7 @@
                                         <th><a href="/admin/user/${user.id}">Подробная информация</a></th>
                                     </tr>
                                 </#if>
-                            <#else>
-                                <h3>Пользователей нет</h3>
+
                             </#list>
                         </table>
                     </div>
@@ -68,47 +67,47 @@
             <div role="tabpanel1" class="tab-pane active mt-4 mb-4" id="s">
                 <div class="container ">
                     <div class="row justify-content-center">
-
-                        <table border="1">
-                            <tr>
-                                <th>ТИП</th>
-                                <th>НАЗВАНИЕ</th>
-                                <th>ОПИСАНИЕ</th>
-                                <th>ЦЕНА</th>
-
-
-                            </tr>
-                            <#list products as product>
+                        <#if products?size!=0>
+                            <table border="1">
                                 <tr>
-                                    <th>${product.type}</th>
-                                    <th><a href="/admin/product/${product.id}">${product.title}</a></th>
-                                    <th>${product.description}</th>
-                                    <th>${product.price}$</th>
-                                    <th>
-
-                                        <form action="/admin/product/available/${product.id}" method="post">
-                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                            <#if product.available>
-                                                <input type="submit" value="Доступна">
-                                            <#else >
-                                                <input type="submit" value="Недоступна">
-                                            </#if>
-
-                                        </form>
-                                    </th>
+                                    <th>ТИП</th>
+                                    <th>НАЗВАНИЕ</th>
+                                    <th>ОПИСАНИЕ</th>
+                                    <th>ЦЕНА</th>
 
 
                                 </tr>
-                            <#else>
-                                <h3>УСЛУГ НЕТ</h3>
-                            </#list>
-                        </table>
+                                <#list products as product>
+                                    <tr>
+                                        <th>${product.type}</th>
+                                        <th><a href="/admin/product/${product.id}">${product.title}</a></th>
+                                        <th>${product.description}</th>
+                                        <th>${product.price}$</th>
+                                        <th>
+
+                                            <form action="/admin/product/available/${product.id}" method="post">
+                                                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                                <#if product.available>
+                                                    <input type="submit" value="Доступна">
+                                                <#else >
+                                                    <input type="submit" value="Недоступна">
+                                                </#if>
+
+                                            </form>
+                                        </th>
+                                    </tr>
+                                </#list>
+                            </table>
+                        <#else>
+                            <h4>УСЛУГ НЕТ</h4>
+                        </#if>
                     </div>
                     <hr>
                     <h4>Запись открыта до: ${lastDate}</h4>
                     <form action="/admin/product/record" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="submit" value="Добавить запись на 7 дней">
+                        <button class="btn btn-primary " type="submit">Добавить запись на 7 дней</button>
+
                     </form>
                     <hr>
                     <h3> Добавить услугу</h3>
@@ -146,10 +145,8 @@
                             <div class="col col-lg-2 mb-3">
                                 <label for="inputState">Тип</label>
                                 <select name="type" id="inputState" class="form-control" required>
-
                                     <option value="1">Мойка</option>
-                                    <option value="2">Чистка</option>
-                                    <option value="3">Другое</option>
+                                    <option value="2">Другое</option>
                                 </select>
                             </div>
 
@@ -161,7 +158,6 @@
 
                 </div>
             </div>
-
             <div role="tabpanel1" class="tab-pane mt-4 mb-4" id="a">
                 <div class="container ">
                     <div class="row justify-content-center">
@@ -198,19 +194,14 @@
 
                                         </th>
                                         <th>
-
                                             <#if  admin.isSuperAdmin()==true>
                                                 <a href="/admin/user/edit/${user.id}">Редактировние</a>
                                             <#else> <#if  user.isSuperAdmin()==false>
                                                 <a href="/admin/user/edit/${user.id}">Редактировние</a>
                                             </#if>
                                             </#if>
-
-
                                         </th>
                                         <th><a href="/admin/user/${user.id}">Подробная информация</a></th>
-
-
                                     </tr>
                                 </#if>
                             </#list>
@@ -218,7 +209,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

@@ -6,7 +6,9 @@
     <h3>Аккаунт</h3>
     <hr>
 
+    <b>ФАМИЛИЯ:</b>${user.lastname}<br>
     <b>ИМЯ:</b>${user.name}<br>
+    <b>ОТЧЕСТВО:</b>${user.secondname}<br>
     <b>EMAIL:</b>${user.email}<br>
     <b>НОМЕР ТЕЛЕФОНА:</b>${user.phoneNumber}<br>
     <hr>
@@ -74,18 +76,18 @@
                                     <th><a href="/product/${record.product.id}">${record.product.title}</a></th>
                                     <th>${record.product.price}</th>
                                     <th>${record.getStrDate()}</th>
-                                    <th>
-                                        <form action="/user/product/rate/${record.id}" method="post">
-                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                            <input type="submit" value="ОЦЕНИТЬ">
-                                        </form>
-                                    </th>
+<#--                                    <th>-->
+<#--                                        <form action="/user/product/rate/${record.id}" method="post">-->
+<#--                                            <input type="hidden" name="_csrf" value="${_csrf.token}">-->
+<#--                                            <input type="submit" value="ОЦЕНИТЬ">-->
+<#--                                        </form>-->
+<#--                                    </th>-->
                                 </tr>
 
                             </#list>
                         </table>
                         <#else >
-                            <h5>ИСТОРИЯ ПУСТА</h5>
+                            <h3>ИСТОРИЯ ПУСТА</h3>
                         </#if>
                     </div>
                 </div>
