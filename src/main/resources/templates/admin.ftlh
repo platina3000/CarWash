@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link " role="tab" data-toggle="tab" href="#a">Администрация</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link " role="tab" data-toggle="tab" href="#st">Статистика</a>
+                </li>
             </ul>
         </div>
         <div class="tab-content ">
@@ -206,6 +209,77 @@
                                 </#if>
                             </#list>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel1" class="tab-pane mt-4 mb-4" id="st">
+                <div class="container ">
+                    <div class="row justify-content-center">
+                        <script type="text/javascript">
+                            google.charts.load('current', {'packages': ['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            function drawChart() {
+
+                                var data = google.visualization.arrayToDataTable([
+                                    ['Type', 'amount'],
+                                    ['МОЙКА', ${statistics[6]}],
+                                    ['ДРУГОЕ', ${statistics[7]}]
+
+                                ]);
+
+                                var options = {
+                                    title: 'Популярность средств',
+                                    chartArea: {left: 0, top: 0, width: 500, height: 500},
+                                    height: 400,
+                                    width: 600
+
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                chart.draw(data, options);
+                            }
+                        </script>
+                        <table border="1" style="margin-right: 165px">
+                            <tr>
+                                <th>ПРИЗНАК</th>
+                                <th>ЗНАЧЕНИЕ</th>
+
+                            </tr>
+                            <tr>
+                                <th>Всего услуг</th>
+                                <th>${statistics[0]}</th>
+                            </tr>
+                            <tr>
+                                <th>Доступно услуг</th>
+                                <th>${statistics[1]}</th>
+                            </tr>
+                            <tr>
+                                <th>Всего дат для записи</th>
+                                <th>${statistics[2]}</th>
+                            </tr>
+                            <tr>
+                                <th>Из них забронировано</th>
+                                <th>${statistics[3]}</th>
+                            </tr>
+                            <tr>
+                                <th>Всего активных броней</th>
+                                <th>${statistics[4]}</th>
+                            </tr>
+                            <tr>
+                                <th>Общая прибыль</th>
+                                <th>${statistics[5]}</th>
+                            </tr>
+
+                        </table>
+
+
+                        <div id="piechart"></div>
+                        <br>
+
+
                     </div>
                 </div>
             </div>

@@ -25,6 +25,7 @@ public class ScheduleService {
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final LogService logService;
 
     public List<Schedule> listRecordsByProduct(Long id) { //список записей на продукт
 
@@ -110,6 +111,7 @@ public class ScheduleService {
     public void addRecordtoSevenDays() {
 
 
+
         LocalDateTime lastDate = getLastDate();
         if (lastDate == null)
             lastDate = LocalDateTime.now();
@@ -127,6 +129,7 @@ public class ScheduleService {
                 regTime = regTime.plusMinutes(30);
             }
         }
+        logService.addLog("ADD RECORD FOR 7 DAYS (until "+ getLastDate()+")");
     }
 
     public LocalDateTime getLastDate() {
@@ -145,6 +148,7 @@ public class ScheduleService {
     }
 
     public void enroll(Long idP, Long idR, User user) {
+
         Schedule record = scheduleRepository.findById(idR).orElse(null);
         Product product = productRepository.findById(idP).orElse(null);
         record.setProduct(product);
@@ -155,6 +159,8 @@ public class ScheduleService {
         userRepository.save(user);
         productRepository.save(product);
 
+
+        logService.addLog("ADD RECORD FOR "+ user.getEmail()+" to" +product.getTitle() +" at"+record.getDate());
     }
 
     public void cancel(Long id) {
@@ -169,5 +175,8 @@ public class ScheduleService {
         s.setUser(null);
         s.setProduct(null);
         scheduleRepository.save(s);
+
+        logService.addLog("CANCEL RECORD FOR "+ u.getEmail()+" to" +p.getTitle() +" at"+s.getDate());
+
     }
 }
