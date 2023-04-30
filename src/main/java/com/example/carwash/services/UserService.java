@@ -20,13 +20,18 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private  final PasswordEncoder passwordEncoder;
+    private final LogService logService;
 
     public boolean createUser(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) return false;
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_ADMIN);
-        log.info("SAVIN NEW USER WITH EMAIL: {}",user.getEmail());
+
+        log.info("SAVINg NEW USER WITH EMAIL: {}",user.getEmail());
+        logService.addLog("SAVINg NEW USER WITH EMAIL: "+user.getEmail());
+
+
         userRepository.save(user);
         return true;
     }
@@ -42,11 +47,13 @@ public class UserService {
             if (user.isActive()){
                 user.setActive(false);
                 log.info("Ban user with id={}; email={}", user.getId(), user.getEmail());
+                logService.addLog("Ban user with email "+ user.getEmail());
+
             }
             else{
                 user.setActive(true);
                 log.info("UNBan user with id={}; email={}", user.getId(), user.getEmail());
-
+                logService.addLog("Unban user with email "+ user.getEmail());
             }
 
 
@@ -68,6 +75,8 @@ public class UserService {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
+
+        logService.addLog("Change user role with email "+ user.getEmail());
         userRepository.save(user);
     }
 }

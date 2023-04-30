@@ -20,14 +20,27 @@
               integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
               crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <style type="text/css">
+            /*html {*/
+            /*    height: 100%;*/
+            /*}*/
+
+            /*body {*/
+            /*    min-height: 100%;*/
+            /*    background: linear-gradient(to bottom left,darkgrey,#fff);*/
+            /*    !*https://oir.mobi/uploads/posts/2022-08/1661406007_2-oir-mobi-p-fon-sto-vkontakte-6.jpg*!*/
+            /*}*/
             html {
-                height: 100%;
+                min-height: 100%;
+
             }
 
             body {
-                min-height: 100%;
-                background: linear-gradient(to bottom left,darkgrey,#fff);
+                background-image: url("https://oir.mobi/uploads/posts/2022-08/1661406007_2-oir-mobi-p-fon-sto-vkontakte-6.jpg");
+                background-size: cover;
+                background-attachment: fixed;
+                /*background: linear-gradient(to bottom left, lightskyblue, #fff) scroll;*/
             }
+
             footer {
                 position:fixed;
                 left:0px;
@@ -38,6 +51,8 @@
 
 
         </style>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>CAR WASH</title>
     </head>
     <body>
@@ -49,14 +64,6 @@
     <div class="row justify-content-center "  >
         <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
     </div>
-
-
-
-
-    <div class="row justify-content-center "  >
-        <img src="https://cdn.icon-icons.com/icons2/67/PNG/512/car_13260.png" width="50" height="50" alt="pic">
-    </div>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -111,7 +118,6 @@
     </script>
     </body>
     <footer>
-
         <p class="text-right mr-4 text-muted"><small>by Andrei Tseluiko</small></p>
     </footer>
     </html>

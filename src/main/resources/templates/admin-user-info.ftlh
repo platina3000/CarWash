@@ -6,7 +6,9 @@
     <h3>Аккаунт</h3>
     <hr>
 
+    <b>ФАМИЛИЯ:</b>${user.lastname}<br>
     <b>ИМЯ:</b>${user.name}<br>
+    <b>ОТЧЕСТВО:</b>${user.secondname}<br>
     <b>EMAIL:</b>${user.email}<br>
     <b>НОМЕР ТЕЛЕФОНА:</b>${user.phoneNumber}<br>
     <hr>

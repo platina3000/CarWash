@@ -33,6 +33,10 @@ public class User implements UserDetails {
     private String phoneNumber;
     @Column(name = "name")
     private String name;
+    @Column(name = "lastname")
+    private String lastname;
+    @Column(name = "secondname")
+    private String secondname;
     @Column(name = "active")
     private boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

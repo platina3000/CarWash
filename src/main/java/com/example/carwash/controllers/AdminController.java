@@ -50,6 +50,7 @@ public class AdminController {
         model.addAttribute("search", title);
         model.addAttribute("lastDate", scheduleService.dateToStr(scheduleService.getLastDate()));
         model.addAttribute("products", productService.listProduct(title));
+        model.addAttribute("statistics", productService.statistics());
         return "admin";
     }
 
