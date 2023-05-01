@@ -37,14 +37,7 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public List<Schedule> listAllFreeRecords() {
-        List<Schedule> list = new ArrayList<>();
-        for (Schedule record : listRecords()) {
-            if (record.getUser() == null) list.add(record);
 
-        }
-        return list;
-    }
     public List<Schedule> listFreeRecords() {
         List<Schedule> list = new ArrayList<>();
         for (Schedule record : listRecords()) {
@@ -109,9 +102,6 @@ public class ScheduleService {
     }
 
     public void addRecordtoSevenDays() {
-
-
-
         LocalDateTime lastDate = getLastDate();
         if (lastDate == null)
             lastDate = LocalDateTime.now();

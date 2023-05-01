@@ -28,7 +28,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_ADMIN);
 
-        log.info("SAVINg NEW USER WITH EMAIL: {}",user.getEmail());
+        log.info("SAVING NEW USER WITH EMAIL: {}",user.getEmail());
         logService.addLog("SAVINg NEW USER WITH EMAIL: "+user.getEmail());
 
 

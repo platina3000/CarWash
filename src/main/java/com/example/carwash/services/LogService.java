@@ -13,10 +13,12 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class LogService {
     private final LogRepository logRepository;
-    public void addLog(String info){
+    public boolean addLog(String info){
+        if(info.isEmpty()) return false;
         Log msg = new Log();
         msg.setDate(LocalDateTime.now());
         msg.setInfo(info);
         logRepository.save(msg);
+        return true;
     }
 }
