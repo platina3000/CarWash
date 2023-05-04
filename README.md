@@ -5,4 +5,4 @@
 2) большое кол-во пользовательских и админских сценариев:  авторизация,  запись,  перенос записи,  удаление записи,  вывод диаграммы по услугам и др.
 3) Все диаграммы,  вся пользовательская и клиентская часть приложения 
 
-##### По данной ссылке находится файл с курсовой работой https://docs.google.com/document/d/1-_l-oJpsI_9CzNSW7Pe_sLmUL7vXULSf/edit?usp=sharing&ouid=112125924081336944988&rtpof=true&sd=true
+##### По данной ссылке находится файл с курсовой работойhttps://docs.google.com/document/d/1-_l-oJpsI_9CzNSW7Pe_sLmUL7vXULSf/edit?usp=sharing&ouid=112125924081336944988&rtpof=true&sd=true
